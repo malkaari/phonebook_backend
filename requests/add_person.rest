@@ -1,0 +1,7 @@
+POST https://phonebook-backend-iexp.onrender.com/api/persons
+content-type: application/json
+
+{
+    "name": "ariel",
+    "number": "05060003"
+}
