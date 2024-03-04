@@ -1,16 +1,19 @@
+/* eslint-disable @stylistic/js/linebreak-style */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @stylistic/js/linebreak-style */
+/* eslint-disable @stylistic/js/indent */
+/* eslint-disable @stylistic/js/linebreak-style */
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 require('dotenv').config()
 const Person = require('./models/person')
-const mongoose = require('mongoose')
-
+// const mongoose = require('mongoose')
 app.use(cors())
 app.use(express.json())
 app.use(morgan('tiny'))
 app.use(express.static('build'))
-
 // let persons = [
 //     { 
 //       "id": 1,
@@ -33,8 +36,6 @@ app.use(express.static('build'))
 //       "number": "39-23-6423122"
 //     }
 // ]
-
-
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
 })
@@ -52,7 +53,6 @@ app.get('/info', (request, response) => {
   //                <h1>${d}<h1>`)
   response.send(`<h1>Phonebook has info for ${len} people </br> ${d}<h1>`)
 })
-
 // app.get('/api/persons/:id', (request, response) => {
 //   const id = Number(request.params.id)
 //   const person = persons.find(p => p.id === id)
@@ -81,18 +81,15 @@ app.get('/api/persons/:id', (request, response, next) => {
 // })
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
+    // eslint-disable-next-line no-unused-vars
     .then(result => {
       response.status(204).end()
     })
     .catch(error => next(error))
 })
-
-
 // const generateId = () => {
 //   return Math.floor(Math.random() * 100000)
 // }
-
-
 app.post('/api/persons', (request, response,next) => {
   const body = request.body
 
@@ -110,13 +107,11 @@ app.post('/api/persons', (request, response,next) => {
     name: body.name,
     number: body.number
   })
-
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
   .catch(error => next(error))
 })
-
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
 
